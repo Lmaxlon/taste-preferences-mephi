@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 # Загружаем набор данных
 iris_df = datasets.load_iris()
+#iris_df = datasets.load_iris()
 
 # Методы, доступные для набора данных
 print(dir(iris_df))
