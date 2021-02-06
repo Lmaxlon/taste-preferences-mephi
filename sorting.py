@@ -1,20 +1,29 @@
-from collections import deque
-from mpl_toolkits.mplot3d import Axes3D
+# Импортируем библиотеки
+from sklearn import datasets
 import matplotlib.pyplot as plt
-def kmeans_draw(clusters):
-    """Drawing kmeans clustering result"""
-    colors = deque(['r', 'g', 'b', 'c', 'm', 'y', 'k'])
-    fig = plt.figure()
-    # Prior to version 1.0.0, the method of creating a 3D axes was different. For those using older versions of matplotlib,
-    # change ax = fig.add_subplot(111, projection='3d') to ax = Axes3D(fig).
-    ax = Axes3D(fig)
-    for cluster in clusters:
-        color = colors.popleft()
-        for name, coord in cluster:
-            x, y, z = coord
-            ax.plot3D([x], [y], [z], marker='o', c=color)
-    ax.set_xlabel(u'Белки')
-    ax.set_ylabel(u'Жиры')
-    ax.set_zlabel(u'Углеводы')
-    plt.show()
-kmeans_draw(K_res)
+
+# Загружаем набор данных
+iris_df = datasets.load_iris()
+#iris_df = datasets.load_iris()
+
+# Методы, доступные для набора данных
+print(dir(iris_df))
+
+# Признаки
+print(iris_df.feature_names)
+
+# Метки
+print(iris_df.target)
+
+# Имена меток
+print(iris_df.target_names)
+
+# Разделение набора данных
+x_axis = iris_df.data[:, 0]  # Sepal Length
+y_axis = iris_df.data[:, 1]  # Sepal Width
+
+# Построение
+plt.xlabel(iris_df.feature_names[0])
+plt.ylabel(iris_df.feature_names[1])
+plt.scatter(x_axis, y_axis, c=iris_df.target)
+plt.show()
